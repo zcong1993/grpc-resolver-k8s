@@ -39,6 +39,8 @@ const main = async () => {
 }
 ```
 
+For more details, please check [example](./example).
+
 ## License
 
 MIT &copy; zcong1993

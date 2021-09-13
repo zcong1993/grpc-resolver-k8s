@@ -19,7 +19,6 @@ const TRACER_NAME = 'k8s_resolver'
 
 const trace = (text: string) => {
   logging.trace(LogVerbosity.DEBUG, TRACER_NAME, text)
-  console.log(`k8sResolver: ${text}`)
 }
 
 export const K8sScheme = 'k8s'
@@ -228,8 +227,6 @@ export class K8sResolover implements Resolver {
         port: this.port,
       })
     }
-
-    console.log(`update SubchannelAddress, ${JSON.stringify(res)}`)
 
     return res
   }
