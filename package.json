@@ -67,5 +67,11 @@
   },
   "peerDependencies": {
     "@grpc/grpc-js": "^1.3.7"
+  },
+  "bugs": "https://github.com/zcong1993/grpc-resolver-k8s/issues",
+  "homepage": "https://github.com/zcong1993/grpc-resolver-k8s",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zcong1993/grpc-resolver-k8s.git"
   }
 }
