@@ -195,15 +195,10 @@ export class K8sResolover implements Resolver {
   }
 
   private addressToSubchannelAddress(): SubchannelAddress[] {
-    const res: SubchannelAddress[] = []
-    for (const addr of this.addresses) {
-      res.push({
-        host: addr,
-        port: this.port,
-      })
-    }
-
-    return res
+    return [...this.addresses.keys()].map((addr) => ({
+      host: addr,
+      port: this.port,
+    }))
   }
 
   private async fetchEndpoints() {
