@@ -14,7 +14,7 @@ import {
 import * as logging from '@grpc/grpc-js/build/src/logging'
 import { LogVerbosity, Status } from '@grpc/grpc-js/build/src/constants'
 
-const defaultRefreshFreq = 1000 * 60 * 30 // 30min
+const defaultRefreshFreq = 1000 * 60 * 5 // 5min force refetch full enpoint peers interval
 const TRACER_NAME = 'k8s_resolver'
 
 const trace = (text: string) => {
@@ -96,17 +96,11 @@ export class K8sResolover implements Resolver {
   }
 
   private watch() {
+    // watch endpoints by namespace and service name
     const informer = k8s.makeInformer(
       kc,
-      `/api/v1/namespaces/${this.namespace}/endpoints?fieldSelector=${fieldSelectorPrefix}${this.serviceName}`,
-      () =>
-        k8sApi.listNamespacedEndpoints(
-          this.namespace,
-          undefined,
-          undefined,
-          undefined,
-          `${fieldSelectorPrefix}${this.serviceName}`
-        )
+      `/api/v1/namespaces/${this.namespace}/endpoints?fieldSelector=${fieldSelectorPrefix}${this.serviceName}`, // makeInformer not support fieldSelector as params for now
+      () => this.fetchEndpoints()
     )
 
     informer.on('add', (obj) => {
@@ -142,17 +136,7 @@ export class K8sResolover implements Resolver {
     })
 
     informer.on('update', (obj) => {
-      const newAddressesSet = new Set<string>()
-      for (const sub of obj.subsets) {
-        for (const point of sub.addresses) {
-          if (!newAddressesSet.has(point.ip)) {
-            newAddressesSet.add(point.ip)
-          }
-        }
-      }
-
-      this.addresses = newAddressesSet
-      this.updateResolutionFromAddress()
+      this.handleFullUpdate(obj.subsets)
     })
 
     this.informer = informer
@@ -167,25 +151,16 @@ export class K8sResolover implements Resolver {
     this.processing = true
 
     try {
-      const res = await k8sApi.listNamespacedEndpoints(
-        this.namespace,
-        undefined,
-        undefined,
-        undefined,
-        `${fieldSelectorPrefix}${this.serviceName}`
-      )
-      const subsets = res.body?.items?.[0]?.subsets
-      const newAddressesSet = new Set<string>()
-      for (const sub of subsets) {
-        for (const point of sub.addresses) {
-          if (!newAddressesSet.has(point.ip)) {
-            newAddressesSet.add(point.ip)
-          }
-        }
+      const res = await this.fetchEndpoints()
+      // only watch for a certain namespace and a certain service name
+      // so items.length must <= 1
+      const item = res.body?.items?.[0]
+      if (!item) {
+        // no endpoints here, report error
+        this.listener.onError(this.defaultResolutionError)
+        return
       }
-
-      this.addresses = newAddressesSet
-      this.updateResolutionFromAddress()
+      this.handleFullUpdate(item.subsets)
     } catch (err) {
       trace(
         'Resolution error for target ' +
@@ -229,6 +204,45 @@ export class K8sResolover implements Resolver {
     }
 
     return res
+  }
+
+  private async fetchEndpoints() {
+    return k8sApi.listNamespacedEndpoints(
+      this.namespace,
+      undefined,
+      undefined,
+      undefined,
+      `${fieldSelectorPrefix}${this.serviceName}`
+    )
+  }
+
+  private handleFullUpdate(subsets: k8s.V1EndpointSubset[]) {
+    const newAddressesSet = new Set<string>()
+    for (const sub of subsets) {
+      for (const point of sub.addresses) {
+        if (!newAddressesSet.has(point.ip)) {
+          newAddressesSet.add(point.ip)
+        }
+      }
+    }
+
+    // diff set
+    let changed = false
+    if (this.addresses.size !== newAddressesSet.size) {
+      changed = true
+    } else {
+      for (const newAddr of newAddressesSet) {
+        if (!this.addresses.has(newAddr)) {
+          changed = true
+          break
+        }
+      }
+    }
+
+    if (changed) {
+      this.addresses = newAddressesSet
+      this.updateResolutionFromAddress()
+    }
   }
 
   static getDefaultAuthority(target: GrpcUri): string {
