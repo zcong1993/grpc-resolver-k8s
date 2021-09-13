@@ -1,0 +1,58 @@
+{
+  "name": "@zcong/**package_name**",
+  "version": "0.0.0",
+  "description": "my cool project",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --build tsconfig.json",
+    "test": "run-s lint jest",
+    "test:cov": "run-s lint jest:cov",
+    "lint": "eslint 'src/**/*.ts'",
+    "format": "prettier --write .",
+    "jest": "jest --detectOpenHandles --forceExit",
+    "jest:cov": "npm run jest -- --coverage",
+    "prepublishOnly": "npm run build",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "release": "node ./scripts/release.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path ."
+  },
+  "types": "./dist/index.d.ts",
+  "author": "zcong1993",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.9.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "chalk": "^4.1.2",
+    "conventional-changelog-cli": "^2.1.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "execa": "^5.1.1",
+    "husky": "^7.0.2",
+    "jest": "^27.1.1",
+    "lint-staged": "^11.1.2",
+    "minimist": "^1.2.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.4.0",
+    "prettier-plugin-organize-imports": "^2.3.3",
+    "prompts": "^2.4.1",
+    "semver": "^7.3.5",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ]
+  },
+  "lint-staged": {
+    "*": "prettier --write"
+  }
+}
