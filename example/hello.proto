@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package pb;
+
+message EchoRequest {
+    string message = 1;
+}
+
+service Hello {
+    rpc Echo(EchoRequest) returns (EchoRequest);
+    // rpc ServerStream(EchoRequest) returns (stream EchoRequest);
+    // rpc ClientStream(stream EchoRequest) returns (EchoRequest);
+    // rpc DuplexStream(stream EchoRequest) returns (stream EchoRequest);
+}

@@ -15,5 +15,5 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist"
   },
-  "exclude": ["node_modules", "**/*.test.ts", "dist"]
+  "exclude": ["node_modules", "**/*.test.ts", "dist", "example"]
 }
