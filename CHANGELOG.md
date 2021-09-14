@@ -1,3 +1,9 @@
+## [0.1.3](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.1.2...v0.1.3) (2021-09-14)
+
+### Bug Fixes
+
+- delete event, and add more trace log ([2655f71](https://github.com/zcong1993/grpc-resolver-k8s/commit/2655f71ad963bc1a93cad0c4aef1b11ec6cfca58))
+
 ## [0.1.2](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.1.1...v0.1.2) (2021-09-13)
 
 ### Bug Fixes
