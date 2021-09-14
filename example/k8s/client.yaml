@@ -7,8 +7,8 @@ spec:
   serviceAccountName: endpoints-reader
   containers:
     - name: test-grpc-client
-      image: zcong/k8s-grpc:latest
-      imagePullPolicy: Always
+      image: zcong/k8s-grpc:0.1.0
+      imagePullPolicy: IfNotPresent
       command:
         - node
         - ./dist/example/client.js
@@ -19,3 +19,5 @@ spec:
           value: grpc-test
         - name: SERVICE_PORT
           value: '8080'
+        - name: GRPC_NODE_TRACE
+          value: k8s_resolver

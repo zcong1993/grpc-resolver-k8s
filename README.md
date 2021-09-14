@@ -41,6 +41,10 @@ const main = async () => {
 
 For more details, please check [example](./example).
 
+### debug
+
+Set env `GRPC_NODE_TRACE=k8s_resolver` and `GRPC_NODE_VERBOSITY=DEBUG`.
+
 ## License
 
 MIT &copy; zcong1993

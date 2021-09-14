@@ -47,7 +47,7 @@ export class K8sResolover implements Resolver {
     private listener: ResolverListener,
     _channelOptions: ChannelOptions // eslint-disable-line
   ) {
-    trace('Resolver constructed for target ' + uriToString(target))
+    this.trace('Resolver constructed')
     this.namespace = target.authority || 'default'
     const hostPort = splitHostPort(target.path)
     this.serviceName = hostPort.host
@@ -73,7 +73,7 @@ export class K8sResolover implements Resolver {
   }
 
   updateResolution() {
-    trace('Resolution update requested for target ' + uriToString(this.target))
+    this.trace('Resolution update requested')
     setImmediate(() => {
       if (this.error) {
         this.listener.onError(this.error)
@@ -84,7 +84,7 @@ export class K8sResolover implements Resolver {
   }
 
   destroy() {
-    trace('Resolver destroy target ' + uriToString(this.target))
+    this.trace('Resolver destroy')
 
     if (this.informer) {
       this.informer.stop()
@@ -117,13 +117,17 @@ export class K8sResolover implements Resolver {
       if (changed) {
         this.updateResolutionFromAddress()
       }
+
+      this.trace(
+        `informer add event, changed: ${changed}, obj: ${JSON.stringify(obj)}`
+      )
     })
 
     informer.on('delete', (obj) => {
       let changed = false
       for (const sub of obj.subsets) {
         for (const point of sub.addresses) {
-          if (!this.addresses.has(point.ip)) {
+          if (this.addresses.has(point.ip)) {
             this.addresses.delete(point.ip)
             changed = true
           }
@@ -133,10 +137,18 @@ export class K8sResolover implements Resolver {
       if (changed) {
         this.updateResolutionFromAddress()
       }
+
+      this.trace(
+        `informer delete event, changed: ${changed}, obj: ${JSON.stringify(
+          obj
+        )}`
+      )
     })
 
     informer.on('update', (obj) => {
       this.handleFullUpdate(obj.subsets)
+
+      this.trace(`informer update event, obj: ${JSON.stringify(obj)}`)
     })
 
     this.informer = informer
@@ -179,11 +191,7 @@ export class K8sResolover implements Resolver {
       return
     }
 
-    trace(
-      `Resolver update listener, target ${uriToString(
-        this.target
-      )}, address: ${[...this.addresses]}`
-    )
+    this.trace(`Resolver update listener, address: ${[...this.addresses]}`)
 
     this.listener.onSuccessfulResolution(
       this.addressToSubchannelAddress(),
@@ -238,6 +246,12 @@ export class K8sResolover implements Resolver {
       this.addresses = newAddressesSet
       this.updateResolutionFromAddress()
     }
+
+    this.trace(`HandleFullUpdate changed: ${changed}`)
+  }
+
+  private trace(msg: string) {
+    trace(`Target ${uriToString(this.target)} ${msg}`)
   }
 
   static getDefaultAuthority(target: GrpcUri): string {

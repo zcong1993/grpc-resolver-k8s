@@ -17,7 +17,7 @@ spec:
       containers:
         - name: test-grpc-server
           image: zcong/k8s-grpc:latest
-          # imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           command:
