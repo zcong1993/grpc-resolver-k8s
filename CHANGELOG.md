@@ -1,3 +1,9 @@
+## [0.1.4](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.1.3...v0.1.4) (2021-09-28)
+
+### Bug Fixes
+
+- restart informer when got error event ([5dcd609](https://github.com/zcong1993/grpc-resolver-k8s/commit/5dcd609c9a4ee3250b4c020ec2cfda73e6102a98))
+
 ## [0.1.3](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.1.2...v0.1.3) (2021-09-14)
 
 ### Bug Fixes
