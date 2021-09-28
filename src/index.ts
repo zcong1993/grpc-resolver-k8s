@@ -151,6 +151,18 @@ export class K8sResolover implements Resolver {
       this.trace(`informer update event, obj: ${JSON.stringify(obj)}`)
     })
 
+    // informer will not restart when the under watcher got error
+    // so we restart the informer ourselves
+    informer.on('error', (err: any) => {
+      this.trace(
+        `informer error event, will restart informer, err: ${JSON.stringify(
+          err
+        )}`
+      )
+      // todo: if need a backoff
+      setTimeout(() => informer.start(), 1000)
+    })
+
     this.informer = informer
 
     return this.informer.start()
