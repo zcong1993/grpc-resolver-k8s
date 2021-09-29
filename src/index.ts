@@ -27,7 +27,14 @@ const fieldSelectorPrefix = 'metadata.name='
 
 const kc = new k8s.KubeConfig()
 kc.loadFromDefault()
-const k8sApi = kc.makeApiClient(k8s.CoreV1Api)
+let k8sApi: k8s.CoreV1Api
+
+export const setup = () => {
+  // init k8s client in setup avoid throw error
+  // when only import lib in non k8s env
+  k8sApi = kc.makeApiClient(k8s.CoreV1Api)
+  registerResolver(K8sScheme, K8sResolover)
+}
 
 export class K8sResolover implements Resolver {
   private error: StatusObject | null = null
@@ -269,8 +276,4 @@ export class K8sResolover implements Resolver {
   static getDefaultAuthority(target: GrpcUri): string {
     return target.path
   }
-}
-
-export const setup = () => {
-  registerResolver(K8sScheme, K8sResolover)
 }
