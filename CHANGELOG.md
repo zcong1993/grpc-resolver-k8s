@@ -1,3 +1,9 @@
+# [0.2.0](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.1.4...v0.2.0) (2021-09-29)
+
+### Features
+
+- init k8s client in setup method ([8128daa](https://github.com/zcong1993/grpc-resolver-k8s/commit/8128daa5518e373fe52fe096f501b7dd57eec5ac))
+
 ## [0.1.4](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.1.3...v0.1.4) (2021-09-28)
 
 ### Bug Fixes
