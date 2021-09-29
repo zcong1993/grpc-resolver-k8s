@@ -1,6 +1,6 @@
 {
   "name": "@zcong/grpc-resolver-k8s",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "k8s resolver for @grpc/grpc-js",
   "main": "./dist/index.js",
   "files": [

@@ -1,3 +1,9 @@
+# [0.3.0](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.2.0...v0.3.0) (2021-09-29)
+
+### Features
+
+- make it simple ([a1619cb](https://github.com/zcong1993/grpc-resolver-k8s/commit/a1619cbf79acb665c0210d8b44b339544196ca4d))
+
 # [0.2.0](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.1.4...v0.2.0) (2021-09-29)
 
 ### Features
