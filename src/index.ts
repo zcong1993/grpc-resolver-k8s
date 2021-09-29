@@ -14,7 +14,6 @@ import {
 import * as logging from '@grpc/grpc-js/build/src/logging'
 import { LogVerbosity, Status } from '@grpc/grpc-js/build/src/constants'
 
-const defaultRefreshFreq = 1000 * 60 * 5 // 5min force refetch full enpoint peers interval
 const TRACER_NAME = 'k8s_resolver'
 
 const trace = (text: string) => {
@@ -39,9 +38,6 @@ export const setup = () => {
 export class K8sResolover implements Resolver {
   private error: StatusObject | null = null
   private defaultResolutionError: StatusObject
-
-  private processing: boolean = false
-  private timer: ReturnType<typeof setInterval>
 
   private namespace: string
   private port: number
@@ -76,18 +72,13 @@ export class K8sResolover implements Resolver {
     }
 
     this.watch()
-    this.timer = setInterval(() => this.updateResolution(), defaultRefreshFreq)
   }
 
+  // only report error if has
   updateResolution() {
-    this.trace('Resolution update requested')
-    setImmediate(() => {
-      if (this.error) {
-        this.listener.onError(this.error)
-      } else {
-        this._updateResolution()
-      }
-    })
+    if (this.error) {
+      setImmediate(() => this.listener.onError(this.error))
+    }
   }
 
   destroy() {
@@ -95,10 +86,6 @@ export class K8sResolover implements Resolver {
 
     if (this.informer) {
       this.informer.stop()
-    }
-
-    if (this.timer) {
-      clearInterval(this.timer)
     }
   }
 
@@ -166,6 +153,7 @@ export class K8sResolover implements Resolver {
           err
         )}`
       )
+      this.listener.onError(this.defaultResolutionError)
       // todo: if need a backoff
       setTimeout(() => informer.start(), 1000)
     })
@@ -173,36 +161,6 @@ export class K8sResolover implements Resolver {
     this.informer = informer
 
     return this.informer.start()
-  }
-
-  private async _updateResolution() {
-    if (this.processing) {
-      return
-    }
-    this.processing = true
-
-    try {
-      const res = await this.fetchEndpoints()
-      // only watch for a certain namespace and a certain service name
-      // so items.length must <= 1
-      const item = res.body?.items?.[0]
-      if (!item) {
-        // no endpoints here, report error
-        this.listener.onError(this.defaultResolutionError)
-        return
-      }
-      this.handleFullUpdate(item.subsets)
-    } catch (err) {
-      trace(
-        'Resolution error for target ' +
-          uriToString(this.target) +
-          ': ' +
-          (err as Error).message
-      )
-      this.listener.onError(this.defaultResolutionError)
-    } finally {
-      this.processing = false
-    }
   }
 
   private updateResolutionFromAddress() {
