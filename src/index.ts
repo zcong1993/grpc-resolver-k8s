@@ -1,4 +1,10 @@
 import * as k8s from '@kubernetes/client-node'
+import {
+  IBackoffFactory,
+  IRetryBackoffContext,
+  ExponentialBackoff,
+  IBackoff,
+} from 'cockatiel'
 import { ChannelOptions, StatusObject, Metadata } from '@grpc/grpc-js'
 import {
   registerResolver,
@@ -28,11 +34,21 @@ const kc = new k8s.KubeConfig()
 kc.loadFromDefault()
 let k8sApi: k8s.CoreV1Api
 
-export const setup = () => {
+// Initial backoff policy, used to reset the backoffs.
+let backoffFactory: IBackoffFactory<IRetryBackoffContext<unknown>> =
+  new ExponentialBackoff()
+
+/**
+ * setup register the k8s:// scheme into grpc resolver
+ * @param backoff - use cockatiel's backoff handle reconnect when error,
+ * default is ExponentialBackoff(a max 30 second delay on a decorrelated jitter)
+ */
+export const setup = (backoff = new ExponentialBackoff()) => {
   // init k8s client in setup avoid throw error
   // when only import lib in non k8s env
   k8sApi = kc.makeApiClient(k8s.CoreV1Api)
   registerResolver(K8sScheme, K8sResolover)
+  backoffFactory = backoff
 }
 
 export class K8sResolover implements Resolver {
@@ -44,6 +60,9 @@ export class K8sResolover implements Resolver {
   private serviceName: string
   private addresses = new Set<string>()
   private informer: k8s.Informer<k8s.V1Endpoints>
+
+  // backoff is use for reconnecting
+  private backoff: IBackoff<IRetryBackoffContext<unknown>> | undefined
 
   constructor(
     private target: GrpcUri,
@@ -98,6 +117,8 @@ export class K8sResolover implements Resolver {
     )
 
     informer.on('add', (obj) => {
+      this.resetBackoff()
+
       let changed = false
       for (const sub of obj.subsets) {
         for (const point of sub.addresses) {
@@ -118,6 +139,8 @@ export class K8sResolover implements Resolver {
     })
 
     informer.on('delete', (obj) => {
+      this.resetBackoff()
+
       let changed = false
       for (const sub of obj.subsets) {
         for (const point of sub.addresses) {
@@ -140,6 +163,8 @@ export class K8sResolover implements Resolver {
     })
 
     informer.on('update', (obj) => {
+      this.resetBackoff()
+
       this.handleFullUpdate(obj.subsets)
 
       this.trace(`informer update event, obj: ${JSON.stringify(obj)}`)
@@ -148,14 +173,21 @@ export class K8sResolover implements Resolver {
     // informer will not restart when the under watcher got error
     // so we restart the informer ourselves
     informer.on('error', (err: any) => {
-      this.trace(
-        `informer error event, will restart informer, err: ${JSON.stringify(
-          err
-        )}`
-      )
       this.listener.onError(this.defaultResolutionError)
-      // todo: if need a backoff
-      setTimeout(() => informer.start(), 1000)
+
+      if (!this.backoff) {
+        this.backoff = backoffFactory.next(null)
+      } else {
+        this.backoff = this.backoff.next(null) ?? this.backoff
+      }
+
+      this.trace(
+        `informer error event, will restart informer, backoff duration: ${
+          this.backoff.duration
+        }, err: ${JSON.stringify(err)}`
+      )
+
+      setTimeout(() => informer.start(), this.backoff.duration)
     })
 
     this.informer = informer
@@ -229,6 +261,10 @@ export class K8sResolover implements Resolver {
 
   private trace(msg: string) {
     trace(`Target ${uriToString(this.target)} ${msg}`)
+  }
+
+  private resetBackoff() {
+    this.backoff = undefined
   }
 
   static getDefaultAuthority(target: GrpcUri): string {
