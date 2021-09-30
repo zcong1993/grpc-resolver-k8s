@@ -1,3 +1,9 @@
+# [0.4.0](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.3.0...v0.4.0) (2021-09-30)
+
+### Features
+
+- use https://github.com/connor4312/cockatiel backoff handle reconnect on error ([54d9efd](https://github.com/zcong1993/grpc-resolver-k8s/commit/54d9efd3597e6e30241e89b42df512f1ee6f2435))
+
 # [0.3.0](https://github.com/zcong1993/grpc-resolver-k8s/compare/v0.2.0...v0.3.0) (2021-09-29)
 
 ### Features
