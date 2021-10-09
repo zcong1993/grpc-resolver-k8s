@@ -34,7 +34,7 @@
     "@typescript-eslint/parser": "^4.31.0",
     "chalk": "^4.1.2",
     "conventional-changelog-cli": "^2.1.1",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
     "execa": "^5.1.1",
