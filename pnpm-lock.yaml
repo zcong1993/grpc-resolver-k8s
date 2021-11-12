@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@grpc/grpc-js': ^1.3.7
-  '@kubernetes/client-node': ^0.15.1
+  '@kubernetes/client-node': ^0.16.0
   '@types/google-protobuf': ^3.15.5
   '@types/jest': ^27.0.1
   '@types/node': ^16.9.1
@@ -31,7 +31,7 @@ specifiers:
   typescript: ^4.4.3
 
 dependencies:
-  '@kubernetes/client-node': 0.15.1
+  '@kubernetes/client-node': 0.16.0
   cockatiel: 2.0.2
 
 devDependencies:
@@ -656,8 +656,8 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@kubernetes/client-node/0.15.1:
-    resolution: {integrity: sha512-j3o5K4TWkdrX2yDndbEZcDxhgea6O2JKnesWoYCJ64WtMn2GbQXGBOnkn2i0WT2MugGbLR+qCm8Y3oHWBApaTA==}
+  /@kubernetes/client-node/0.16.0:
+    resolution: {integrity: sha512-tbndrDdWTocuZcnemoXifnRLxz9FwDE3ZiFd5KiX48aHdBI/kCReAo4WIfQxH4IGiJPKR64RVX3glXWd5TwZXw==}
     dependencies:
       '@types/js-yaml': 4.0.3
       '@types/node': 10.17.60
