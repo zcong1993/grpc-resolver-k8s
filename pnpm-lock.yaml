@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@grpc/grpc-js': ^1.3.7
@@ -26,7 +26,7 @@ specifiers:
   prettier-plugin-organize-imports: ^2.3.3
   prompts: ^2.4.1
   semver: ^7.3.5
-  ts-jest: ^27.0.5
+  ts-jest: ^28.0.0
   ts-protoc-gen: ^0.15.0
   typescript: ^4.4.3
 
@@ -39,8 +39,8 @@ devDependencies:
   '@types/google-protobuf': 3.15.5
   '@types/jest': 27.0.1
   '@types/node': 16.9.1
-  '@typescript-eslint/eslint-plugin': 5.0.0_23617e02451b63a8997d0f18b2622d8e
-  '@typescript-eslint/parser': 5.0.0_eslint@8.0.0+typescript@4.4.3
+  '@typescript-eslint/eslint-plugin': 5.0.0_enqx4asfdnr2rgl5b4mleyrnry
+  '@typescript-eslint/parser': 5.0.0_pynffyz3perbifzqpi7s7znob4
   chalk: 5.0.0
   conventional-changelog-cli: 2.1.1
   eslint: 8.0.0
@@ -55,10 +55,10 @@ devDependencies:
   minimist: 1.2.5
   npm-run-all: 4.1.5
   prettier: 2.4.0
-  prettier-plugin-organize-imports: 2.3.3_prettier@2.4.0+typescript@4.4.3
+  prettier-plugin-organize-imports: 2.3.3_zrrbr4wgqghmej2lowiitzccqi
   prompts: 2.4.1
   semver: 7.3.5
-  ts-jest: 27.0.5_a4e701ccccc58dcd64b7a600f1ea8307
+  ts-jest: 28.0.0_uttqdtgmywg42zfxuyapd2uda4
   ts-protoc-gen: 0.15.0
   typescript: 4.4.3
 
@@ -993,7 +993,7 @@ packages:
       '@types/yargs-parser': 20.2.1
     dev: true
 
-  /@typescript-eslint/eslint-plugin/5.0.0_23617e02451b63a8997d0f18b2622d8e:
+  /@typescript-eslint/eslint-plugin/5.0.0_enqx4asfdnr2rgl5b4mleyrnry:
     resolution: {integrity: sha512-T6V6fCD2U0YesOedvydTnrNtsC8E+c2QzpawIpDdlaObX0OX5dLo7tLU5c64FhTZvA1Xrdim+cXDI7NPsVx8Cg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -1004,8 +1004,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/experimental-utils': 5.0.0_eslint@8.0.0+typescript@4.4.3
-      '@typescript-eslint/parser': 5.0.0_eslint@8.0.0+typescript@4.4.3
+      '@typescript-eslint/experimental-utils': 5.0.0_pynffyz3perbifzqpi7s7znob4
+      '@typescript-eslint/parser': 5.0.0_pynffyz3perbifzqpi7s7znob4
       '@typescript-eslint/scope-manager': 5.0.0
       debug: 4.3.2
       eslint: 8.0.0
@@ -1019,7 +1019,7 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/experimental-utils/5.0.0_eslint@8.0.0+typescript@4.4.3:
+  /@typescript-eslint/experimental-utils/5.0.0_pynffyz3perbifzqpi7s7znob4:
     resolution: {integrity: sha512-Dnp4dFIsZcPawD6CT1p5NibNUQyGSEz80sULJZkyhyna8AEqArmfwMwJPbmKzWVo4PabqNVzHYlzmcdLQWk+pg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -1037,7 +1037,7 @@ packages:
       - typescript
     dev: true
 
-  /@typescript-eslint/parser/5.0.0_eslint@8.0.0+typescript@4.4.3:
+  /@typescript-eslint/parser/5.0.0_pynffyz3perbifzqpi7s7znob4:
     resolution: {integrity: sha512-B6D5rmmQ14I1fdzs71eL3DAuvnPHTY/t7rQABrL9BLnx/H51Un8ox1xqYAchs0/V2trcoyxB1lMJLlrwrJCDgw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -2875,13 +2875,6 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /is-ci/3.0.0:
-    resolution: {integrity: sha512-kDXyttuLeslKAHYL/K28F2YkM3x5jvFPEw3yXbRptXydjD9rpLEz+C5K5iutY9ZiUu6AP41JdvRQwF4Iqs4ZCQ==}
-    hasBin: true
-    dependencies:
-      ci-info: 3.2.0
-    dev: true
-
   /is-core-module/2.6.0:
     resolution: {integrity: sha512-wShG8vs60jKfPWpF2KZRaAtvt3a20OAn7+IJ6hLPECpSABLcKtFKTTI4ZtH5QcBruBHlq+WsdHWyz0BCZW7svQ==}
     dependencies:
@@ -3428,18 +3421,6 @@ packages:
       - supports-color
     dev: true
 
-  /jest-util/27.1.1:
-    resolution: {integrity: sha512-zf9nEbrASWn2mC/L91nNb0K+GkhFvi4MP6XJG2HqnHzHvLYcs7ou/In68xYU1i1dSkJlrWcYfWXQE8nVR+nbOA==}
-    engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
-    dependencies:
-      '@jest/types': 27.1.1
-      '@types/node': 16.9.1
-      chalk: 4.1.2
-      graceful-fs: 4.2.10
-      is-ci: 3.0.0
-      picomatch: 2.3.0
-    dev: true
-
   /jest-util/28.0.0:
     resolution: {integrity: sha512-wSZjUR74ZR076RfyWdZ0tI3+U87QmK+RCB5igUKRUhinclf4O9om6UNBy0u9YfT6shKhno3l/eiQVmRp/AEfeA==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.13.0 || >=17.0.0}
@@ -3699,6 +3680,10 @@ packages:
 
   /lodash.ismatch/4.4.0:
     resolution: {integrity: sha1-dWy1FQyjum8RCFp4hJZF8Yj4Xzc=}
+    dev: true
+
+  /lodash.memoize/4.1.2:
+    resolution: {integrity: sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=}
     dev: true
 
   /lodash.merge/4.6.2:
@@ -4252,7 +4237,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-organize-imports/2.3.3_prettier@2.4.0+typescript@4.4.3:
+  /prettier-plugin-organize-imports/2.3.3_zrrbr4wgqghmej2lowiitzccqi:
     resolution: {integrity: sha512-PBOwQ8vEIB2b7B3gCuBG7D+dqsr1fsTR4TSAjNacRVdHJrD0yzgz9grOLPSyfwJm+NUTZLyWeHoZ+1mHaUrk+g==}
     peerDependencies:
       prettier: '>=2.0'
@@ -5019,16 +5004,17 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-jest/27.0.5_a4e701ccccc58dcd64b7a600f1ea8307:
-    resolution: {integrity: sha512-lIJApzfTaSSbtlksfFNHkWOzLJuuSm4faFAfo5kvzOiRAuoN4/eKxVJ2zEAho8aecE04qX6K1pAzfH5QHL1/8w==}
-    engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
+  /ts-jest/28.0.0_uttqdtgmywg42zfxuyapd2uda4:
+    resolution: {integrity: sha512-JOUGExRO4vNaQdc920/sJjFZxe9lBGa6WIuNWkvtZoORGI9dyHTBqhuaJUdBVWIfqj+vaK3TRt/B1T0hQ0ROaA==}
+    engines: {node: ^12.13.0 || ^14.15.0 || ^16.13.0 || >=17.0.0}
     hasBin: true
     peerDependencies:
       '@babel/core': '>=7.0.0-beta.0 <8'
       '@types/jest': ^27.0.0
-      babel-jest: '>=27.0.0 <28'
-      jest: ^27.0.0
-      typescript: '>=3.8 <5.0'
+      babel-jest: ^28.0.0
+      esbuild: '*'
+      jest: ^28.0.0
+      typescript: '>=4.3'
     peerDependenciesMeta:
       '@babel/core':
         optional: true
@@ -5036,14 +5022,16 @@ packages:
         optional: true
       babel-jest:
         optional: true
+      esbuild:
+        optional: true
     dependencies:
       '@types/jest': 27.0.1
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 28.0.0_@types+node@16.9.1
-      jest-util: 27.1.1
+      jest-util: 28.0.0
       json5: 2.2.0
-      lodash: 4.17.21
+      lodash.memoize: 4.1.2
       make-error: 1.3.6
       semver: 7.3.5
       typescript: 4.4.3
