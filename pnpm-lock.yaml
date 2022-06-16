@@ -23,7 +23,7 @@ specifiers:
   minimist: ^1.2.5
   npm-run-all: ^4.1.5
   prettier: ^2.4.0
-  prettier-plugin-organize-imports: ^2.3.3
+  prettier-plugin-organize-imports: ^3.0.0
   prompts: ^2.4.1
   semver: ^7.3.5
   ts-jest: ^28.0.0
@@ -55,7 +55,7 @@ devDependencies:
   minimist: 1.2.5
   npm-run-all: 4.1.5
   prettier: 2.4.0
-  prettier-plugin-organize-imports: 2.3.3_zrrbr4wgqghmej2lowiitzccqi
+  prettier-plugin-organize-imports: 3.0.0_zrrbr4wgqghmej2lowiitzccqi
   prompts: 2.4.1
   semver: 7.3.5
   ts-jest: 28.0.0_wdi2zzogbriyogastlkaonjdzu
@@ -4300,8 +4300,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-organize-imports/2.3.3_zrrbr4wgqghmej2lowiitzccqi:
-    resolution: {integrity: sha512-PBOwQ8vEIB2b7B3gCuBG7D+dqsr1fsTR4TSAjNacRVdHJrD0yzgz9grOLPSyfwJm+NUTZLyWeHoZ+1mHaUrk+g==}
+  /prettier-plugin-organize-imports/3.0.0_zrrbr4wgqghmej2lowiitzccqi:
+    resolution: {integrity: sha512-juSCJs5TMOqGGPaN/A/1xzWFzRPH2LG1LPLCr64dzKaVnPafJdtgDNmDVlU+8A4LbQzVJg0DTvgA8swBuIUhlg==}
     peerDependencies:
       prettier: '>=2.0'
       typescript: '>=2.9'
