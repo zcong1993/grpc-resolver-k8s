@@ -33,7 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
     "chalk": "^5.0.0",
-    "conventional-changelog-cli": "^4.0.0",
+    "conventional-changelog-cli": "^5.0.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.24.2",
