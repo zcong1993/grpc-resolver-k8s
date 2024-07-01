@@ -23,7 +23,7 @@ specifiers:
   minimist: ^1.2.5
   npm-run-all2: ^6.0.0
   prettier: ^3.0.0
-  prettier-plugin-organize-imports: ^3.0.0
+  prettier-plugin-organize-imports: ^4.0.0
   prompts: ^2.4.1
   semver: ^7.3.5
   ts-jest: ^29.0.0
@@ -55,7 +55,7 @@ devDependencies:
   minimist: 1.2.6
   npm-run-all2: 6.1.1
   prettier: 3.0.0
-  prettier-plugin-organize-imports: 3.0.0_qefqtopqd5zoihp7sh4a5hg4ne
+  prettier-plugin-organize-imports: 4.0.0_qefqtopqd5zoihp7sh4a5hg4ne
   prompts: 2.4.1
   semver: 7.3.5
   ts-jest: 29.0.0_rvpjwltjr6hrbmpj74voxwvg6m
@@ -4244,11 +4244,18 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-organize-imports/3.0.0_qefqtopqd5zoihp7sh4a5hg4ne:
-    resolution: {integrity: sha512-juSCJs5TMOqGGPaN/A/1xzWFzRPH2LG1LPLCr64dzKaVnPafJdtgDNmDVlU+8A4LbQzVJg0DTvgA8swBuIUhlg==}
+  /prettier-plugin-organize-imports/4.0.0_qefqtopqd5zoihp7sh4a5hg4ne:
+    resolution: {integrity: sha512-vnKSdgv9aOlqKeEFGhf9SCBsTyzDSyScy1k7E0R1Uo4L0cTcOV7c1XQaT7jfXIOc/p08WLBfN2QUQA9zDSZMxA==}
     peerDependencies:
+      '@vue/language-plugin-pug': ^2.0.24
       prettier: '>=2.0'
       typescript: '>=2.9'
+      vue-tsc: ^2.0.24
+    peerDependenciesMeta:
+      '@vue/language-plugin-pug':
+        optional: true
+      vue-tsc:
+        optional: true
     dependencies:
       prettier: 3.0.0
       typescript: 5.0.2
