@@ -63,7 +63,7 @@
     "*": "prettier --write"
   },
   "dependencies": {
-    "@kubernetes/client-node": "^0.21.0",
+    "@kubernetes/client-node": "^0.22.0",
     "cockatiel": "^3.0.0"
   },
   "peerDependencies": {
