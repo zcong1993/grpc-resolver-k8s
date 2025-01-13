@@ -12,7 +12,7 @@ specifiers:
   cockatiel: ^3.0.0
   conventional-changelog-cli: ^5.0.0
   eslint: ^9.0.0
-  eslint-config-prettier: ^9.0.0
+  eslint-config-prettier: ^10.0.0
   eslint-plugin-import: ^2.24.2
   execa: ^9.0.0
   google-protobuf: ^3.18.0-rc.2
@@ -44,7 +44,7 @@ devDependencies:
   chalk: 5.0.0
   conventional-changelog-cli: 5.0.0
   eslint: 9.0.0
-  eslint-config-prettier: 9.0.0_eslint@9.0.0
+  eslint-config-prettier: 10.0.1_eslint@9.0.0
   eslint-plugin-import: 2.24.2_dieo74notk6hltknxrxlsuicji
   execa: 9.0.0
   google-protobuf: 3.18.0-rc.2
@@ -2032,8 +2032,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-prettier/9.0.0_eslint@9.0.0:
-    resolution: {integrity: sha512-IcJsTkJae2S35pRsRAwoCE+925rJJStOdkKnLVgtE+tEpqU0EVVM7OqrwxqgptKdX29NUwC82I5pXsGFIgSevw==}
+  /eslint-config-prettier/10.0.1_eslint@9.0.0:
+    resolution: {integrity: sha512-lZBts941cyJyeaooiKxAtzoPHTN+GbQTJFAIdQbRhA4/8whaAraEh47Whw/ZFfrjNSnlAxqfm9i0XVAEkULjCw==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
