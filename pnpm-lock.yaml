@@ -21,7 +21,7 @@ specifiers:
   jest: ^29.0.0
   lint-staged: ^15.0.0
   minimist: ^1.2.5
-  npm-run-all2: ^7.0.0
+  npm-run-all2: ^8.0.0
   prettier: ^3.0.0
   prettier-plugin-organize-imports: ^4.0.0
   prompts: ^2.4.1
@@ -53,7 +53,7 @@ devDependencies:
   jest: 29.0.0_@types+node@22.5.4
   lint-staged: 15.0.0
   minimist: 1.2.6
-  npm-run-all2: 7.0.0
+  npm-run-all2: 8.0.0
   prettier: 3.0.0
   prettier-plugin-organize-imports: 4.0.0_qefqtopqd5zoihp7sh4a5hg4ne
   prompts: 2.4.1
@@ -1848,6 +1848,15 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  /cross-spawn/7.0.6:
+    resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
+    engines: {node: '>= 8'}
+    dependencies:
+      path-key: 3.1.1
+      shebang-command: 2.0.0
+      which: 2.0.2
+    dev: true
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -3659,13 +3668,6 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /minimatch/10.0.1:
-    resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
-    engines: {node: 20 || >=22}
-    dependencies:
-      brace-expansion: 2.0.1
-    dev: true
-
   /minimatch/3.0.4:
     resolution: {integrity: sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==}
     dependencies:
@@ -3820,15 +3822,15 @@ packages:
     engines: {node: ^18.17.0 || >=20.5.0}
     dev: true
 
-  /npm-run-all2/7.0.0:
-    resolution: {integrity: sha512-hXQT0BFU0G37H516ZJgISho4FslbdqMj7U8A7xoj81mhYSyxnwfF6dsraWAA1xL7ak/8yUVvAN4Lx4PpTc5Ohg==}
-    engines: {node: ^20.5.0 || >=22.0.0, npm: '>= 9'}
+  /npm-run-all2/8.0.0:
+    resolution: {integrity: sha512-HQ9Z8cQqDIKvTpZgxa7oPRqi07iEdau5E1V6vMkON05v5McgAEvLltVuWGmBE3fiObCTthkxlpJbCZJYGAVDjg==}
+    engines: {node: '>=20.5.0', npm: '>= 10'}
     hasBin: true
     dependencies:
       ansi-styles: 6.2.1
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.6
       memorystream: 0.3.1
-      minimatch: 10.0.1
+      minimatch: 9.0.5
       pidtree: 0.6.0
       read-package-json-fast: 4.0.0
       shell-quote: 1.8.1
