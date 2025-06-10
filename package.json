@@ -41,7 +41,7 @@
     "google-protobuf": "^3.18.0-rc.2",
     "grpc-tools": "^1.11.2",
     "husky": "^9.0.0",
-    "jest": "^29.0.0",
+    "jest": "^30.0.0",
     "lint-staged": "^16.0.0",
     "minimist": "^1.2.5",
     "npm-run-all2": "^8.0.0",
